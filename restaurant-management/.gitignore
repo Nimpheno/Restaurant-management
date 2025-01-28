@@ -31,3 +31,34 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Игнориране на компилирани файлове и билд артефакти
+/target/
+*.jar
+*.war
+*.ear
+
+# IntelliJ IDEA файлове
+/.idea/
+/*.iml
+
+# VS Code файлове
+/.vscode/
+
+# Системни файлове (Mac & Windows)
+.DS_Store
+Thumbs.db
+
+# Логове и кеш файлове
+/logs/
+*.log
+
+# Конфигурационни и средови файлове
+.env
+*.properties
+
+# Git игнориране на Maven и Gradle кеш
+/.mvn/
+/.mvnw
+/.gradle/
+/build/
