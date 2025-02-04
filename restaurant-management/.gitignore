@@ -55,7 +55,6 @@ Thumbs.db
 
 # Конфигурационни и средови файлове
 .env
-*.properties
 
 # Git игнориране на Maven и Gradle кеш
 /.mvn/

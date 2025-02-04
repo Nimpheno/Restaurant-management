@@ -11,7 +11,9 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -31,7 +33,7 @@ public class OrderService {
     public Order createOrder(CreateOrderRequest request) {
         // Проверка дали заявката съдържа поне един артикул
         if (request.getItems() == null || request.getItems().isEmpty()) {
-            throw new IllegalArgumentException("Поръчката трябва да съдържа поне един артикул.");
+            throw new IllegalArgumentException("Order must contain at least one item.");
         }
 
         List<OrderItem> orderItems = new ArrayList<>();
@@ -79,16 +81,15 @@ public class OrderService {
     }
 
     // 4. Изчисляване на дневния оборот
-    public double calculateDailyTurnover() {
+    public BigDecimal calculateDailyTurnover() {
         // Определяне на времевия интервал за текущия ден
         LocalDate today = LocalDate.now();
         LocalDateTime startOfDay = today.atStartOfDay();
         LocalDateTime endOfDay = today.plusDays(1).atStartOfDay();
 
         // Намиране на всички поръчки за текущия ден и изчисляване на общата сума
-        return orderRepository.findAllByCreatedAtBetween(startOfDay, endOfDay)
-                .stream()
-                .mapToDouble(order -> order.calculateTotalPrice().doubleValue())
-                .sum();
+        return orderRepository.findAllByCreatedAtBetween(startOfDay, endOfDay).stream()
+                .map(order -> order.calculateTotalPrice()) // Вече е BigDecimal
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }

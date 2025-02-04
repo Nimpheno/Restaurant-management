@@ -3,19 +3,23 @@
   <component name="CompilerConfiguration">
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
-      <profile name="Annotation profile for restaurant-management." enabled="true">
+      <profile name="Annotation profile for restaurant-management" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar" />
         </processorPath>
-        <module name="restaurant-management." />
+        <module name="restaurant-management" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="restaurant-management." target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="restaurant-management" options="-parameters" />
       <module name="restaurant-management." options="-parameters" />
     </option>
   </component>

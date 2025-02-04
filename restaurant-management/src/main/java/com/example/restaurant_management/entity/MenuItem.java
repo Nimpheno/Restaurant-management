@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 @Entity
 
 public class MenuItem
